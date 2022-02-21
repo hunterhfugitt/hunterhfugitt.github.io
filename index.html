@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project 1 Bad Air</title>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:;base64,iVBORwOKGO=" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>    
+    <h1>Project 1 Bad Air</h1>
+        <h2>Hunter Hersko-Fugitt</h2>
+        <h2>Clickable Dropdown</h2>
+            <p>Click on the button to open the dropdown menu.</p>
+    <div class="dropdown">
+        <button onclick= "myFunction()" class="dropbtn">Dropdown</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="linegraphs.html">linegraphs</a>
+              <a href="piechart.html">Piecharts</a>
+              <a href="index.html">index</a>
+        </div>
+    </div>
+    
+    <svg id="#chart"></svg>
+    <svg id="#chart2"></svg>
+    <!-- D3 bundle -->
+    <script src="js/d3.v6.min.js"></script>
+    <script>src="js/dropbtn.js"</script>
+    <script>function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+    
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+              openDropdown.classList.remove('show');
+            }
+          }
+        }
+      }</script>
+    <!-- Our JS code - INCLUDING the new files-->
+
+</body>
+</html>

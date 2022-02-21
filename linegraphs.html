@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project 1 Bad Air</title>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:;base64,iVBORwOKGO=" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background-color:#efffea;">    
+    <h1>Project 1 Bad Air</h1>
+        <h2>Hunter Hersko-Fugitt</h2>
+        <h2>Clickable Dropdown</h2>
+            <p>Click on the button to open the dropdown menu.</p>
+    <div class="dropdown">
+        <button onclick= "myFunction()" class="dropbtn">Dropdown</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="linegraphs.html">Line Graphs</a>
+              <a href="piechart.html">Pie Charts</a>
+              <a href="index.html">index</a>
+        </div>
+    </div>
+    <svg id="chart"></svg>
+    <svg id="chart2"></svg>
+    <svg id="legend1" height = 300 width = 400></svg>
+    <svg id="chart3"></svg>
+    <svg id="chart4"></svg>
+    <svg id="legend2" height = 400 width = 400></svg>
+    <!-- D3 bundle -->
+    <script src="js/d3.v6.min.js"></script>
+    <script>src="js/dropbtn.js"</script>
+    <script>function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+    
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+              openDropdown.classList.remove('show');
+            }
+          }
+        }
+      }</script>
+    <!-- Our JS code - INCLUDING the new files-->
+    <script src="js/linegraphs.js"></script>
+    <script src="js/Line.js"></script>  
+    <script>
+
+      // select the svg area
+      var Svg = d3.select("#legend1")
+      
+      // create a list of keys
+      var keys = ["Max_AQI", "_90th_Percentile_AQI", "Median_AQI"]
+      
+      // Usually you have a color scale in your chart already
+      var color = d3.scaleOrdinal()
+        .domain(keys)
+        .range(['purple','red','orange']);
+      
+      // Add one dot in the legend for each name.
+      Svg.selectAll("mydots")
+        .data(keys)
+        .enter()
+        .append("circle")
+          .attr("cx", 110)
+          .attr("cy", function(d,i){ return 100+i*25}) // 100 is where the first dot appears. 25 is the distance between dots
+          .attr("r", 7)
+          .style("fill", function(d){ return color(d)})
+      
+      // Add one dot in the legend for each name.
+      Svg.selectAll("mylabels")
+        .data(keys)
+        .enter()
+        .append("text")
+          .attr("x", 120)
+          .attr("y", function(d,i){ return 100+i*25}) // 100 is where the first dot appears. 25 is the distance between dots
+          .style("fill", function(d){ return color(d)})
+          .style("font-size", "20px") 
+          .style("text-decoration", "underline")
+          .text(function(d){ return d})
+          .attr("text-anchor", "left")
+          .style("alignment-baseline", "middle")
+      </script>
+       <script>
+
+        // select the svg area
+        var Svg = d3.select("#legend2")
+        
+        // create a list of keys
+        var keys = ["CO", "NO2", "Ozone", "SO2", "PM2.5","PM10","None Recorded"]
+        
+        // Usually you have a color scale in your chart already
+        var color = d3.scaleOrdinal()
+          .domain(keys)
+          .range(['red','orange','magenta','green','blue','purple','black']);
+        
+        // Add one dot in the legend for each name.
+        Svg.selectAll("mydots")
+          .data(keys)
+          .enter()
+          .append("circle")
+            .attr("cx", 110)
+            .attr("cy", function(d,i){ return 100+i*25}) // 100 is where the first dot appears. 25 is the distance between dots
+            .attr("r", 7)
+            .style("fill", function(d){ return color(d)})
+        
+        // Add one dot in the legend for each name.
+        Svg.selectAll("mylabels")
+          .data(keys)
+          .enter()
+          .append("text")
+            .attr("x", 120)
+            .attr("y", function(d,i){ return 100+i*25}) // 100 is where the first dot appears. 25 is the distance between dots
+            .style("fill", function(d){ return color(d)})
+            .style("font-size", "20px") 
+            .style("text-decoration", "underline")
+            .text(function(d){ return d})
+            .attr("text-anchor", "left")
+            .style("alignment-baseline", "middle")
+        </script>
+    <script src="js/Line_2.js"></script>
+    <script src="js/timelineCircles.js"></script> 
+
+</body>
+</html>
